@@ -33,7 +33,7 @@ minutesDiff (Minutes a) (Minutes b) = Minutes (a - b)
 main :: IO ()
 main = do
     let startDay = fromGregorian 2018 1 1
-    for_ (take 365 $ [startDay..]) $ \day -> do
+    for_ (take 365 [startDay..]) $ \day -> do
         let time = UTCTime day 0
             (offsetBothell, tzInEffectBothell) = tzOffsetInfo tzBothell time
             (offsetHaworth, tzInEffectHaworth) = tzOffsetInfo tzHaworth time
