@@ -3,7 +3,7 @@
 module Main (main) where
 
 import           Data.Foldable (for_)
-import           Data.Time (TimeZone, UTCTime(..), addDays, fromGregorian)
+import           Data.Time (TimeZone, UTCTime(..), fromGregorian)
 import           Data.Time.Zones (diffForPOSIX, timeZoneForPOSIX)
 import           Data.Time.Zones.Internal (utcTimeToInt64)
 import           Data.Time.Zones.TH (includeTZFromDB)
@@ -33,7 +33,7 @@ minutesDiff (Minutes a) (Minutes b) = Minutes (a - b)
 main :: IO ()
 main = do
     let startDay = fromGregorian 2018 1 1
-    for_ (take 365 $ map (flip addDays startDay) [0..]) $ \day -> do
+    for_ (take 365 $ [startDay..]) $ \day -> do
         let time = UTCTime day 0
             (offsetBothell, tzInEffectBothell) = tzOffsetInfo tzBothell time
             (offsetHaworth, tzInEffectHaworth) = tzOffsetInfo tzHaworth time
